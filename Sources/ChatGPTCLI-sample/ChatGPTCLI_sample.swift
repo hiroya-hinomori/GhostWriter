@@ -11,7 +11,7 @@ public struct ChatGPTCLI_sample {
         guard arguments.count == 3,
               let x = Int(arguments[1]),
               let y = Int(arguments[2]) else {
-            print("Usage: sample <x> <y>")
+            print("Usage: $ swift run sample <x> <y>")
             exit(1)
         }
 
