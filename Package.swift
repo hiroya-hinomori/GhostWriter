@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "ChatGPTCLI-sample",
+    products: [
+        .executable(name: "sample", targets: ["ChatGPTCLI-sample"]),
+    ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
