@@ -17,11 +17,8 @@ extension CompletionKind {
 
 struct ChatGPTCLI_sample: ParsableCommand {
     
-    @Option(name: .long, completion: .empty)
-    var x: Int?
-    
-    @Option(name: .long, completion: .empty)
-    var y: Int?
+    @Option(name: [.long, .short], completion: .file())
+    var inputFilePath: String?
 
     static let configuration = CommandConfiguration(
         commandName: "sample",
@@ -35,8 +32,15 @@ struct ChatGPTCLI_sample: ParsableCommand {
     )
 
     func run() throws {
-        let sample = SampleCore(x: x ?? 0, y: y ?? 0)
-        sample.sample()
+        guard let inputFilePath = inputFilePath else {
+            throw CLIError.notFound
+        }
+        let sample = SampleCore(
+            option: .init(
+                inputFilePath: URL(fileURLWithPath: inputFilePath)
+            )
+        )
+        try sample.sample()
     }
 }
 

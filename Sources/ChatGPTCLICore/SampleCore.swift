@@ -8,17 +8,17 @@
 import Foundation
 
 public struct SampleCore {
-    let x: Int
-    let y: Int
+    let option: Options
     
-    public init(x: Int, y: Int) {
-        self.x = x
-        self.y = y
+    public init(option: Options) {
+        self.option = option
     }
 
-    public func sample() {
-        print("Sample CORE!!!")
-        let result = x + y
-        print("Result: \(result)")
+    public func sample() throws {
+        guard FileValidator.validate(option.inputFilePath) else {
+            throw CLIError.notSupported
+        }
+        let fileContents = try String(contentsOf: option.inputFilePath, encoding: .utf8)
+        print(fileContents)
     }
 }
