@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import API
 
 public struct Core {
     let option: Options
@@ -14,11 +15,13 @@ public struct Core {
         self.option = option
     }
 
-    public func sample() throws {
+    public func sample() async throws {
         guard FileValidator.validate(option.inputFilePath) else {
             throw CLIError.notSupported
         }
         let fileContents = try String(contentsOf: option.inputFilePath, encoding: .utf8)
-        print(fileContents)
+        let request = OpenAIRequest(secret: option.secret, text: "Hello!")
+        let result = try await Session.send(request)
+        print(result.choices.first?.message.content)
     }
 }

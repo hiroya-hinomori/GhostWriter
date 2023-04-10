@@ -1,8 +1,8 @@
 //
-//  main.swift
+//  Sample.swift
 //  
 //
-//  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/07.
+//  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/10.
 //
 
 import Foundation
@@ -15,10 +15,13 @@ extension CompletionKind {
     }
 }
 
-struct ChatGPTCLI_sample: ParsableCommand {
-    
+@main
+struct Sample: AsyncParsableCommand {
     @Option(name: [.long, .short], completion: .file())
     var inputFilePath: String?
+
+    @Option(name: [.long, .customShort("k")], completion: .file())
+    var openAIAPIKey: String?
 
     static let configuration = CommandConfiguration(
         commandName: "sample",
@@ -31,17 +34,16 @@ struct ChatGPTCLI_sample: ParsableCommand {
         helpNames: [.long, .short]
     )
 
-    func run() throws {
+    func run() async throws {
         guard let inputFilePath = inputFilePath else {
             throw CLIError.notFound
         }
         let sample = Core(
             option: .init(
-                inputFilePath: URL(fileURLWithPath: inputFilePath)
+                inputFilePath: URL(fileURLWithPath: inputFilePath),
+                secret: openAIAPIKey ?? ""
             )
         )
-        try sample.sample()
+        try await sample.sample()
     }
 }
-
-ChatGPTCLI_sample.main()
