@@ -9,7 +9,20 @@ import Foundation
 import ChatGPTCLICore
 import ArgumentParser
 
+extension CompletionKind {
+    static var empty: CompletionKind {
+        return .custom { _ in return [] }
+    }
+}
+
 struct ChatGPTCLI_sample: ParsableCommand {
+    
+    @Option(name: .long, completion: .empty)
+    var x: Int?
+    
+    @Option(name: .long, completion: .empty)
+    var y: Int?
+
     static let configuration = CommandConfiguration(
         commandName: "sample",
         abstract: "Sample CLI",
@@ -22,7 +35,8 @@ struct ChatGPTCLI_sample: ParsableCommand {
     )
 
     func run() throws {
-        SampleCore.print()
+        let sample = SampleCore(x: x ?? 0, y: y ?? 0)
+        sample.sample()
     }
 }
 

@@ -7,17 +7,18 @@
 
 import Foundation
 
-public enum SampleCore {
-    public static func print() {
-        Swift.print("Sample CORE!!!")
-        let arguments = CommandLine.arguments
-        guard arguments.count == 3,
-              let x = Int(arguments[1]),
-              let y = Int(arguments[2]) else {
-            Swift.print("Usage: $ swift run sample <x> <y>")
-            exit(1)
-        }
+public struct SampleCore {
+    let x: Int
+    let y: Int
+    
+    public init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+    }
+
+    public func sample() {
+        print("Sample CORE!!!")
         let result = x + y
-        Swift.print("Result: \(result)")
+        print("Result: \(result)")
     }
 }
