@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import ChatGPTCLICore
+import Core
 import ArgumentParser
 
 extension CompletionKind {
@@ -35,7 +35,7 @@ struct ChatGPTCLI_sample: ParsableCommand {
         guard let inputFilePath = inputFilePath else {
             throw CLIError.notFound
         }
-        let sample = SampleCore(
+        let sample = Core(
             option: .init(
                 inputFilePath: URL(fileURLWithPath: inputFilePath)
             )
