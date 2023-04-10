@@ -24,5 +24,8 @@ let package = Package(
         .target(
             name: "ChatGPTCLICore",
             dependencies: []),
+        .testTarget(
+            name: "ChatGPTCLICoreTests",
+            dependencies: ["ChatGPTCLICore"]),
     ]
 )
