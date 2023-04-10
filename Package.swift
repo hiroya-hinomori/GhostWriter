@@ -6,26 +6,23 @@ import PackageDescription
 let package = Package(
     name: "ChatGPTCLI-sample",
     products: [
-        .executable(name: "sample", targets: ["ChatGPTCLI-sample"]),
+        .executable(name: "sample", targets: ["sample"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
     ],
     targets: [
         .executableTarget(
-            name: "ChatGPTCLI-sample",
+            name: "sample",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "ChatGPTCLICore"
+                "Core"
             ]),
-        .testTarget(
-            name: "ChatGPTCLI-sampleTests",
-            dependencies: ["ChatGPTCLI-sample"]),
         .target(
-            name: "ChatGPTCLICore",
+            name: "Core",
             dependencies: []),
         .testTarget(
-            name: "ChatGPTCLICoreTests",
-            dependencies: ["ChatGPTCLICore"]),
+            name: "CoreTests",
+            dependencies: ["Core"]),
     ]
 )

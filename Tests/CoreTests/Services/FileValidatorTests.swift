@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import ChatGPTCLICore
+@testable import Core
 
 final class FileValidatorTests: XCTestCase {
     

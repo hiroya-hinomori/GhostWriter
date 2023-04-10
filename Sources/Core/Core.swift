@@ -1,5 +1,5 @@
 //
-//  SampleCore.swift
+//  Core.swift
 //  
 //
 //  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/10.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SampleCore {
+public struct Core {
     let option: Options
     
     public init(option: Options) {
