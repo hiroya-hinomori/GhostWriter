@@ -9,6 +9,6 @@ import Foundation
 
 enum FileValidator {
     static func validate(_ url: URL) -> Bool {
-        url.lastPathComponent.hasSuffix("swift")
+        url.lastPathComponent.hasSuffix(".swift")
     }
 }
