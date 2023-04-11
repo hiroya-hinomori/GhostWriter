@@ -1,5 +1,5 @@
 //
-//  Sample.swift
+//  TestGen.swift
 //  
 //
 //  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/10.
@@ -16,7 +16,7 @@ extension CompletionKind {
 }
 
 @main
-struct Sample: AsyncParsableCommand {
+struct TestGen: AsyncParsableCommand {
     @Option(name: [.long, .short], completion: .file())
     var inputFilePath: String?
 
