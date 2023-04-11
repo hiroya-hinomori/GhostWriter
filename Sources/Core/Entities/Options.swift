@@ -9,10 +9,12 @@ import Foundation
 
 public struct Options {
     let inputFilePath: URL
+    let outputDirectoryPath: URL
     let secret: String
     
-    public init(inputFilePath: URL, secret: String) {
+    public init(inputFilePath: URL, outputDirectoryPath: URL, secret: String) {
         self.inputFilePath = inputFilePath
+        self.outputDirectoryPath = outputDirectoryPath
         self.secret = secret
     }
 }
