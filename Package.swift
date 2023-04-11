@@ -4,12 +4,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "ChatGPTCLI-sample",
+    name: "ChatGPTCLI",
     platforms: [
         .macOS(.v13)
     ],
     products: [
-        .executable(name: "sample", targets: ["sample"]),
+        .executable(name: "testgen", targets: ["TestGen"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
@@ -17,7 +17,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "sample",
+            name: "TestGen",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "Core"
