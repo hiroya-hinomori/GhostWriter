@@ -27,7 +27,7 @@ public struct MapperGenerator: GeneratorProtocol {
     }
     
     public func createOutputPath() -> URL {
-        outputDirectoryPath.appending(component: createFileName() + ".swift")
+        outputDirectoryPath.appending(component: createFileName())
     }
     
     func createFileName() -> String {
