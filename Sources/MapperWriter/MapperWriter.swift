@@ -1,5 +1,5 @@
 //
-//  MapperGen.swift
+//  MapperWriter.swift
 //  
 //
 //  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/12.
@@ -10,7 +10,7 @@ import Core
 import ArgumentParser
 
 @main
-struct MapperGen: AsyncParsableCommand {
+struct MapperWriter: AsyncParsableCommand {
     @Option(name: [.long, .short], completion: .file())
     var sourceFilePath: String?
 
@@ -24,7 +24,7 @@ struct MapperGen: AsyncParsableCommand {
     var openAIAPIKey: String?
 
     static let configuration = CommandConfiguration(
-        commandName: "mappergen",
+        commandName: "mapperwriter",
         abstract: "Mapper Generator",
         discussion: """
         Generate Mapper file via OpenAI API

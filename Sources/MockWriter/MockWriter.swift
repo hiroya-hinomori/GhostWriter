@@ -1,5 +1,5 @@
 //
-//  MockGen.swift
+//  MockWriter.swift
 //  
 //
 //  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/11.
@@ -10,7 +10,7 @@ import Core
 import ArgumentParser
 
 @main
-struct MockGen: AsyncParsableCommand {
+struct MockWriter: AsyncParsableCommand {
     @Option(name: [.long, .short], completion: .file())
     var inputFilePath: String?
 
@@ -21,7 +21,7 @@ struct MockGen: AsyncParsableCommand {
     var openAIAPIKey: String?
 
     static let configuration = CommandConfiguration(
-        commandName: "mockgen",
+        commandName: "mockwriter",
         abstract: "Mock Generator",
         discussion: """
         Generate Mock file via OpenAI API
