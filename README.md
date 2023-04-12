@@ -1,9 +1,9 @@
-# ChatGPTCLI-sample
+# GhostWriter
 ![MacOS](https://img.shields.io/badge/macOS-13.0-000000?style=flat&logo=apple)
 ![Swift version](https://img.shields.io/badge/Swift-5.7-f05138?style=flat&logo=swift)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-3.5_turbo-000000?style=flat)
 
-ChatGPTを使ったCLIのサンプルです。
+ChatGPTを使ったCLIです。
 
 このツールで以下の機能を提供しています。
 
