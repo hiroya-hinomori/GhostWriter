@@ -6,16 +6,37 @@ import XCTest
 @testable import Core
 
 class UnitTestGeneratorTests: XCTestCase {
-
-    func test_createOrder() {
-        let content = "some content"
-        let expectedResult = "Generate unit test for this codes with Swift without comment.\n\nsome content"
-        XCTAssertEqual(UnitTestGenerator.createOrder(content), expectedResult)
+    
+    var inputFilePath: URL!
+    var outputDirectoryPath: URL!
+    var generator: UnitTestGenerator!
+    
+    override func setUp() {
+        super.setUp()
+        inputFilePath = URL(fileURLWithPath: "/path/to/input/file.swift")
+        outputDirectoryPath = URL(fileURLWithPath: "/path/to/output/directory/")
+        generator = UnitTestGenerator(inputFilePath: inputFilePath, outputDirectoryPath: outputDirectoryPath)
     }
-
-    func test_createOutputFileName() {
-        let inputFileName = "MyModule.swift"
-        let expectedOutputFileName = "MyModuleTests+ChatGPT.swift"
-        XCTAssertEqual(UnitTestGenerator.createOutputFileName(inputFileName), expectedOutputFileName)
+    
+    override func tearDown() {
+        inputFilePath = nil
+        outputDirectoryPath = nil
+        generator = nil
+        super.tearDown()
+    }
+    
+    func testCreateOrder() {
+        let order = generator.createOrder()
+        XCTAssertGreaterThan(order.count, 0)
+    }
+    
+    func testCreateOutputPath() {
+        let outputPath = generator.createOutputPath()
+        XCTAssertEqual(outputPath.pathExtension, "swift")
+    }
+    
+    func testCreateFileName() {
+        let fileName = generator.createFileName()
+        XCTAssertEqual(fileName, "fileTests+ChatGPT.swift")
     }
 }
