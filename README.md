@@ -30,7 +30,7 @@ ChatGPTを使ったCLIのサンプルです。
 #### ユニットテスト生成
 
 ```
-$ swift run test [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
+$ swift run testwriter [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
 ```
 
 | パラメータ | 説明 |
@@ -42,7 +42,7 @@ $ swift run test [--input-file-path <input-file-path>] [--output-directory-path 
 #### Mock生成
 
 ```
-$ swift run mock [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
+$ swift run mockwriter [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
 ```
 
 | パラメータ | 説明 |
@@ -54,7 +54,7 @@ $ swift run mock [--input-file-path <input-file-path>] [--output-directory-path 
 #### オブジェクトマッパー生成
 
 ```
-$ swift run mapper [--source-file-path <source-file-path>] [--destination-file-path <destination-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
+$ swift run mapperwriter [--source-file-path <source-file-path>] [--destination-file-path <destination-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
 ```
 
 | パラメータ | 説明 |
