@@ -13,7 +13,8 @@ public enum Core {
         let request: OpenAIRequest = OpenAIRequest(secret: secret, text: generator.createOrder())
         let outputPath: URL = generator.createOutputPath()
         let result = try await Session.send(request)
-        let outputContents = GenerateFileHeader.header + (result.choices.map(\.message.content).first ?? "")
+//        let outputContents = GenerateFileHeader.header + (result.choices.map(\.message.content).first ?? "")
+        let outputContents = GenerateFileHeader.header + (result.list.first ?? "")
         try outputContents.write(to: outputPath, atomically: true, encoding: .utf8)
         print("COMPLETE 🎉")
     }
