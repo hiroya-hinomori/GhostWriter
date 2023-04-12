@@ -7,39 +7,31 @@
 
 import Foundation
 
-public struct ReplyList: Decodable {
-    public let id: String
-    public let object: String
-    public let created: Int
-    public let model: String
-    
-    public struct Usage: Decodable {
-        enum CodingKeys: String, CodingKey {
-            case promptTokens = "prompt_tokens"
-            case completionTokens = "completion_tokens"
-            case totalTokens = "total_tokens"
-        }
-
-        public let promptTokens: Int
-        public let completionTokens: Int
-        public let totalTokens: Int
-    }
-    
-    public let usage: Usage
-    public let choices: [Reply]
-}
-
 public struct Reply: Decodable {
-    enum CodingKeys: String, CodingKey {
+    public let list: [String]
+    
+    enum RootKeys: String, CodingKey {
+        case choices
+    }
+    
+    enum ChoiceKeys: String, CodingKey {
         case message
-        case finishReason = "finish_reason"
-        case index
     }
-    public struct Message: Decodable {
-        public let role: String
-        public let content: String
+    
+    enum MessageKeys: String, CodingKey {
+        case content
     }
-    public let message: Message
-    public let finishReason: String
-    public let index: Int
+
+    public init(from decoder: Decoder) throws {
+        let root = try decoder.container(keyedBy: RootKeys.self)
+        var choices = try root.nestedUnkeyedContainer(forKey: .choices)
+        var list: [String] = []
+        while !choices.isAtEnd {
+            let container = try choices.nestedContainer(keyedBy: ChoiceKeys.self)
+            let message = try container.nestedContainer(keyedBy: MessageKeys.self, forKey: .message)
+            let text = try message.decode(String.self, forKey: .content)
+            list.append(text)
+        }
+        self.list = list
+    }
 }

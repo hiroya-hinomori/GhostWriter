@@ -9,7 +9,7 @@ import Foundation
 import APIKit
 
 public struct OpenAIRequest: HTTPRequestProtocol {
-    public typealias Response = ReplyList
+    public typealias Response = Reply
     
     public var sample: Data {
         .init()
