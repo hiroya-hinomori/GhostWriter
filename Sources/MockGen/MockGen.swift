@@ -1,8 +1,8 @@
 //
-//  TestGen.swift
+//  MockGen.swift
 //  
 //
-//  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/10.
+//  Created by 日野森 寛也（Hiroya Hinomori） on 2023/04/11.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import Core
 import ArgumentParser
 
 @main
-struct TestGen: AsyncParsableCommand {
+struct MockGen: AsyncParsableCommand {
     @Option(name: [.long, .short], completion: .file())
     var inputFilePath: String?
 
@@ -21,10 +21,10 @@ struct TestGen: AsyncParsableCommand {
     var openAIAPIKey: String?
 
     static let configuration = CommandConfiguration(
-        commandName: "testgen",
-        abstract: "Unit Test Generator",
+        commandName: "mockgen",
+        abstract: "Mock Generator",
         discussion: """
-        Generate Unit Test file via OpenAI API
+        Generate Mock file via OpenAI API
         """,
         version: "0.0.1",
         shouldDisplay: true,
@@ -36,7 +36,7 @@ struct TestGen: AsyncParsableCommand {
             throw CLIError.notFound
         }
         try await Core.request(
-            with: UnitTestGenerator(
+            with: MockGenerator(
                 inputFilePath: URL(fileURLWithPath: inputFilePath),
                 outputDirectoryPath: URL(fileURLWithPath: outputDirectoryPath, isDirectory: true)
             ),
