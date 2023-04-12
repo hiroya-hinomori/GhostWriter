@@ -34,11 +34,4 @@ public struct MockGenerator: GeneratorProtocol {
             return "Mock" + name.replacingOccurrences(of: ".swift", with: "+ChatGPT.swift")
         }
     }
-    
-    func loadInputFile(_ url: URL) throws -> String {
-        guard FileValidator.validate(url) else {
-            throw CLIError.notSupported
-        }
-        return try String(contentsOf: url, encoding: .utf8)
-    }
 }

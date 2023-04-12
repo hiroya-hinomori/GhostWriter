@@ -9,8 +9,9 @@ let package = Package(
         .macOS(.v13)
     ],
     products: [
-        .executable(name: "testgen", targets: ["TestGen"]),
-        .executable(name: "mockgen", targets: ["MockGen"]),
+        .executable(name: "test", targets: ["TestGen"]),
+        .executable(name: "mock", targets: ["MockGen"]),
+        .executable(name: "mapper", targets: ["MapperGen"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
@@ -25,6 +26,12 @@ let package = Package(
             ]),
         .executableTarget(
             name: "MockGen",
+            dependencies: [
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                "Core"
+            ]),
+        .executableTarget(
+            name: "MapperGen",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "Core"

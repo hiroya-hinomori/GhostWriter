@@ -29,11 +29,4 @@ public struct UnitTestGenerator: GeneratorProtocol {
     func createFileName() -> String {
         inputFilePath.lastPathComponent.replacingOccurrences(of: ".swift", with: "Tests+ChatGPT.swift")
     }
-
-    func loadInputFile(_ url: URL) throws -> String {
-        guard FileValidator.validate(url) else {
-            throw CLIError.notSupported
-        }
-        return try String(contentsOf: url, encoding: .utf8)
-    }
 }
