@@ -9,8 +9,9 @@ import Foundation
 import API
 
 public enum Core {
-    public static func request(with generator: GeneratorProtocol, secret: String) async throws {
-        let request: OpenAIRequest = OpenAIRequest(secret: secret, text: generator.createOrder())
+    public static func request(with generator: GeneratorProtocol, openAIAPIKeyFilePath: URL) async throws {
+        let apikey = try String(contentsOf: openAIAPIKeyFilePath, encoding: .utf8).trimmingCharacters(in: .newlines)
+        let request: OpenAIRequest = OpenAIRequest(secret: apikey, text: generator.createOrder())
         let outputPath: URL = generator.createOutputPath()
         let result = try await withThrowingTaskGroup(of: Reply?.self, returning: String.self) { group in
             var result = ""
