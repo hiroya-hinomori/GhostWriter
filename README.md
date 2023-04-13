@@ -42,7 +42,7 @@ $ swift run testwriter [--input-file-path <input-file-path>] [--output-directory
 
 | パラメータ | 説明 |
 |---|---|
-| -k, --open-aiapi-key-file-path |　OpenAI API Key　|
+| -k, --open-aiapi-key-file-path |　OpenAI API Keyを格納したファイルパス　|
 | -i, --input-file-path |　ユニットテストを生成したいファイルのパス　|
 | -o, --output-directory-path |　生成したファイルの出力先パス　|
 
@@ -54,7 +54,7 @@ $ swift run mockwriter [--input-file-path <input-file-path>] [--output-directory
 
 | パラメータ | 説明 |
 |---|---|
-| -k, --open-aiapi-key-file-path |　OpenAI API Key　|
+| -k, --open-aiapi-key-file-path |　OpenAI API Keyを格納したファイルパス　|
 | -i, --input-file-path |　モックを生成したいファイルのパス　|
 | -o, --output-directory-path |　生成したファイルの出力先パス　|
 
@@ -66,7 +66,7 @@ $ swift run mapperwriter [--source-file-path <source-file-path>] [--destination-
 
 | パラメータ | 説明 |
 |---|---|
-| -k, --open-aiapi-key-file-path |　OpenAI API Key　|
+| -k, --open-aiapi-key-file-path |　OpenAI API Keyを格納したファイルパス　|
 | -s, --source-file-path |　変換元のクラスのファイルパス　|
 | -d, --destination-file-path |　変換先のクラスのファイルパス　|
 | -o, --output-directory-path |　生成したファイルの出力先パス　|
