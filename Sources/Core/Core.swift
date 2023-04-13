@@ -12,9 +12,36 @@ public enum Core {
     public static func request(with generator: GeneratorProtocol, secret: String) async throws {
         let request: OpenAIRequest = OpenAIRequest(secret: secret, text: generator.createOrder())
         let outputPath: URL = generator.createOutputPath()
-        let result = try await Session.send(request)
-        let outputContents = GenerateFileHeader.header + (result.list.first ?? "")
+        let result = try await withThrowingTaskGroup(of: Reply?.self, returning: String.self) { group in
+            var result = ""
+            let loader = Loading()
+            
+            group.addTask {
+                try await Session.send(request)
+            }
+            
+            group.addTask {
+                await loader.show()
+                return nil
+            }
+            
+            for try await reply in group {
+                if reply.isNotNil {
+                    result = reply?.list.first ?? ""
+                    loader.isRunning = false
+                }
+            }
+            return result
+        }
+        
+        let outputContents = GenerateFileHeader.header + result
         try outputContents.write(to: outputPath, atomically: true, encoding: .utf8)
         print("COMPLETE 🎉")
+    }
+}
+
+extension Optional {
+    var isNotNil: Bool {
+        return self != nil
     }
 }
