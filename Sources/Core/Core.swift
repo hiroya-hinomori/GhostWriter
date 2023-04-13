@@ -25,11 +25,16 @@ public enum Core {
                 return nil
             }
             
-            for try await reply in group {
-                if reply.isNotNil {
-                    result = reply?.list.first ?? ""
-                    loader.isRunning = false
+            do {
+                for try await reply in group {
+                    if reply.isNotNil {
+                        result = reply?.list.first ?? ""
+                        loader.isRunning = false
+                    }
                 }
+            } catch {
+                loader.isRunning = false
+                throw error
             }
             return result
         }
