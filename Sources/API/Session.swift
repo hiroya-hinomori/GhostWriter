@@ -11,8 +11,10 @@ import APIKit
 public enum Session {
     public static func send<Request>(_ request: Request) async throws -> Request.Response where Request: HTTPRequestProtocol {
         try await withCheckedThrowingContinuation { continuation in
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 180
             APIKit
-                .Session(adapter: URLSessionAdapter(configuration: .default))
+                .Session(adapter: URLSessionAdapter(configuration: config))
                 .send(request) { response in
                     do {
                         continuation.resume(returning: try response.get())
