@@ -27,39 +27,46 @@ ChatGPTを使ったCLIです。
 
 当リポジトリをクローン後にリポジトリのルートに移動後にそれぞれのツールのコマンドが実行できます。 
 
+### API Key設定
+
+当ツールを使用したいディレクトリのルートにOpenAIのAPI Keyを保持する秘密ファイルを生成してください
+
+1. `$ touch .openai`
+1. `$ echo YOUR_OPEN_API_KEY > .openai`
+
 #### ユニットテスト生成
 
 ```
-$ swift run testwriter [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
+$ swift run testwriter [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key-file-path <open-aiapi-key-file-path>]
 ```
 
 | パラメータ | 説明 |
 |---|---|
-| -k, --open-aiapi-key |　OpenAI API Key　|
+| -k, --open-aiapi-key-file-path |　OpenAI API Key　|
 | -i, --input-file-path |　ユニットテストを生成したいファイルのパス　|
 | -o, --output-directory-path |　生成したファイルの出力先パス　|
 
 #### Mock生成
 
 ```
-$ swift run mockwriter [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
+$ swift run mockwriter [--input-file-path <input-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key-file-path <open-aiapi-key-file-path>]
 ```
 
 | パラメータ | 説明 |
 |---|---|
-| -k, --open-aiapi-key |　OpenAI API Key　|
+| -k, --open-aiapi-key-file-path |　OpenAI API Key　|
 | -i, --input-file-path |　モックを生成したいファイルのパス　|
 | -o, --output-directory-path |　生成したファイルの出力先パス　|
 
 #### オブジェクトマッパー生成
 
 ```
-$ swift run mapperwriter [--source-file-path <source-file-path>] [--destination-file-path <destination-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key <open-aiapi-key>]
+$ swift run mapperwriter [--source-file-path <source-file-path>] [--destination-file-path <destination-file-path>] [--output-directory-path <output-directory-path>] [--open-aiapi-key-file-path <open-aiapi-key-file-path>]
 ```
 
 | パラメータ | 説明 |
 |---|---|
-| -k, --open-aiapi-key |　OpenAI API Key　|
+| -k, --open-aiapi-key-file-path |　OpenAI API Key　|
 | -s, --source-file-path |　変換元のクラスのファイルパス　|
 | -d, --destination-file-path |　変換先のクラスのファイルパス　|
 | -o, --output-directory-path |　生成したファイルの出力先パス　|

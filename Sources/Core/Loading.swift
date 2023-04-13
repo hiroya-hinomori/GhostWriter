@@ -16,7 +16,7 @@ class Loading {
         while isRunning {
             try? await Task.sleep(for: .seconds(1))
             count = resetIfNeeded(increment(count))
-            print(String(repeating:"🏎", count:count))
+            print(String(repeating:"🏎  ", count:count))
         }
     }
     

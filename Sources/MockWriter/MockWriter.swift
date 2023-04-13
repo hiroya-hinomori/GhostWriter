@@ -18,7 +18,7 @@ struct MockWriter: AsyncParsableCommand {
     var outputDirectoryPath: String?
 
     @Option(name: [.long, .customShort("k")], completion: .file())
-    var openAIAPIKey: String?
+    var openAIAPIKeyFilePath: String = ".openai"
 
     static let configuration = CommandConfiguration(
         commandName: "mockwriter",
@@ -40,7 +40,7 @@ struct MockWriter: AsyncParsableCommand {
                 inputFilePath: URL(fileURLWithPath: inputFilePath),
                 outputDirectoryPath: URL(fileURLWithPath: outputDirectoryPath, isDirectory: true)
             ),
-            secret: openAIAPIKey ?? ""
+            openAIAPIKeyFilePath: URL(fileURLWithPath: openAIAPIKeyFilePath)
         )
     }
 }
